@@ -1,19 +1,38 @@
 #include "cache.h"
+#include <unistd.h>
+
+struct page_t
+{
+    int number;
+
+    page_t(int num) : number(num) {}
+
+    int id() { return number; }
+};
+
+
+
+page_t slow_get_page(int key)
+{
+    sleep(1);
+    std::cout << "download page\n";
+    return page_t(key);
+}
+
 
 int main()
-{
-    std::priority_queue<int> q;
-    q.push(5);
-    q.push(4);
-    q.push(3);
-    q.push(2);
-    q.push(1);
-    q.push(11);
-    q.push(3);
+{    
+    int size = 0, number_of_page = 0;
+    std::cin >> size >> number_of_page;
 
-    while (!q.empty())
+    int hits = 0;
+    Cache<page_t> cache(size);   
+    for (int i = 0; i < number_of_page; i++)
     {
-        std::cout << q.top() << " ";
-        q.pop();
+        int page_number = 0;
+        std::cin >> page_number;
+        if (cache.lookup_update(page_number, slow_get_page)) hits++;
     }
+
+    std::cout << hits; 
 }
