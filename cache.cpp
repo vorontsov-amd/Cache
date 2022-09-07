@@ -34,16 +34,14 @@ int main()
 
     for (int i = 0; i < number_of_page; i++)
     {
-        std::cout << i << "\n";
         int page_number = 0;
         std::cin >> page_number;
         if (cache.lookup_update(page_number, slow_get_page)) hits++;
-        std::cout << i << "end\n";
     }
 
     auto end = clock() - start;
 
     std::cout << hits << "\n"; 
 
-    std::cout << "runtime " << end / 1000.0 << "c\n";
+    std::cout << "runtime " << end << "c\n";
 }
