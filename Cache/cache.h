@@ -29,7 +29,7 @@ private:
 public:
     Cache() : Cache(10) {}
     Cache(size_t cap) : capacity(cap), min_counter(0) {}
-    ~Cache() = default;
+    ~Cache() {};
 
     bool lookup_update(KeyT key, std::function<T(KeyT)> slow_get_page);
     
