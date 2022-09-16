@@ -4,7 +4,7 @@ int main(int argc, char const *argv[])
 {
     std::ofstream out("test.txt");
 
-    out << "10 10000 ";
+    out << "10 10000 \n";
 
     for (int i = 0; i < 10000; i++)
     {

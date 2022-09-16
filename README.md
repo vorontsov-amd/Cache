@@ -1,5 +1,5 @@
 # LFU Cache
-This is LFU algorithm cache working for O(1). 
+This is LFU algorithm cache working for O(1).
 It also implements an "ideal cache" and shows a comparison between an ideal cache and an LFC cache.
 ##### Compilling
 To compile a program to compare caches with runtime counts, use make with the test argument.
