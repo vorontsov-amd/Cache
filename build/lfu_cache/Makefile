@@ -87,7 +87,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"lfu\" \"perfectCache\" \"tests\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"lfuCache\" \"perfectCache\" \"testCache\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -162,25 +162,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-lfu_cache/CMakeFiles/lfu.dir/rule:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lfu_cache/CMakeFiles/lfu.dir/rule
-.PHONY : lfu_cache/CMakeFiles/lfu.dir/rule
+lfu_cache/CMakeFiles/lfuCache.dir/rule:
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lfu_cache/CMakeFiles/lfuCache.dir/rule
+.PHONY : lfu_cache/CMakeFiles/lfuCache.dir/rule
 
 # Convenience name for target.
-lfu: lfu_cache/CMakeFiles/lfu.dir/rule
-.PHONY : lfu
+lfuCache: lfu_cache/CMakeFiles/lfuCache.dir/rule
+.PHONY : lfuCache
 
 # fast build rule for target.
-lfu/fast:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/build
-.PHONY : lfu/fast
+lfuCache/fast:
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/build
+.PHONY : lfuCache/fast
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/src/main.cpp.o
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -188,7 +188,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/src/main.cpp.i
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -196,7 +196,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/src/main.cpp.s
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -211,7 +211,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... lfu"
+	@echo "... lfuCache"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

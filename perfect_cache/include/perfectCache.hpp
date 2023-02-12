@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <iterator>
 #include <list>
@@ -24,7 +25,7 @@ namespace Cache {
         size_t capacity;
         //------------------------------------------------------------------------------------------------
     public: 
-        PerfectCache(size_t capacity_, const std::vector<KeyT>& key_stream_) : capacity{capacity_}, key_stream(key_stream_) {}
+        PerfectCache(size_t capacity_, const std::vector<KeyT>& key_stream_) : key_stream(key_stream_), capacity{capacity_} {}
 
         //Methods-----------------------------------------------------------------------------------------
         bool lookupUpdate(const std::function<T(KeyT)>& slowGetPage);
@@ -37,7 +38,7 @@ namespace Cache {
             auto pos   = key_stream.begin();
 
             for (auto cache_it = cache.begin(); cache_it != cache.end(); ++cache_it) {
-                auto candidate = std::find(key_stream.begin(), key_stream.end(), cache_it->second);
+                auto candidate = std::find(key_iterator, key_stream.end(), cache_it->second);
 
                 if (candidate > pos) {
                     pos   = candidate;

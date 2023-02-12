@@ -4,7 +4,7 @@
 /home/amadey/Документы/Projects/Cache/build/CMakeFiles/install.dir
 /home/amadey/Документы/Projects/Cache/build/CMakeFiles/install/local.dir
 /home/amadey/Документы/Projects/Cache/build/CMakeFiles/install/strip.dir
-/home/amadey/Документы/Projects/Cache/build/lfu_cache/CMakeFiles/lfu.dir
+/home/amadey/Документы/Projects/Cache/build/lfu_cache/CMakeFiles/lfuCache.dir
 /home/amadey/Документы/Projects/Cache/build/lfu_cache/CMakeFiles/edit_cache.dir
 /home/amadey/Документы/Projects/Cache/build/lfu_cache/CMakeFiles/rebuild_cache.dir
 /home/amadey/Документы/Projects/Cache/build/lfu_cache/CMakeFiles/list_install_components.dir
@@ -18,7 +18,7 @@
 /home/amadey/Документы/Projects/Cache/build/perfect_cache/CMakeFiles/install.dir
 /home/amadey/Документы/Projects/Cache/build/perfect_cache/CMakeFiles/install/local.dir
 /home/amadey/Документы/Projects/Cache/build/perfect_cache/CMakeFiles/install/strip.dir
-/home/amadey/Документы/Projects/Cache/build/test/CMakeFiles/tests.dir
+/home/amadey/Документы/Projects/Cache/build/test/CMakeFiles/testCache.dir
 /home/amadey/Документы/Projects/Cache/build/test/CMakeFiles/edit_cache.dir
 /home/amadey/Документы/Projects/Cache/build/test/CMakeFiles/rebuild_cache.dir
 /home/amadey/Документы/Projects/Cache/build/test/CMakeFiles/list_install_components.dir

@@ -87,7 +87,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"lfu\" \"perfectCache\" \"tests\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"lfuCache\" \"perfectCache\" \"testCache\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -162,25 +162,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-test/CMakeFiles/tests.dir/rule:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/tests.dir/rule
-.PHONY : test/CMakeFiles/tests.dir/rule
+test/CMakeFiles/testCache.dir/rule:
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/testCache.dir/rule
+.PHONY : test/CMakeFiles/testCache.dir/rule
 
 # Convenience name for target.
-tests: test/CMakeFiles/tests.dir/rule
-.PHONY : tests
+testCache: test/CMakeFiles/testCache.dir/rule
+.PHONY : testCache
 
 # fast build rule for target.
-tests/fast:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/build
-.PHONY : tests/fast
+testCache/fast:
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/build
+.PHONY : testCache/fast
 
 gtest.o: gtest.cpp.o
 .PHONY : gtest.o
 
 # target to build an object file
 gtest.cpp.o:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/gtest.cpp.o
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/gtest.cpp.o
 .PHONY : gtest.cpp.o
 
 gtest.i: gtest.cpp.i
@@ -188,7 +188,7 @@ gtest.i: gtest.cpp.i
 
 # target to preprocess a source file
 gtest.cpp.i:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/gtest.cpp.i
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/gtest.cpp.i
 .PHONY : gtest.cpp.i
 
 gtest.s: gtest.cpp.s
@@ -196,7 +196,7 @@ gtest.s: gtest.cpp.s
 
 # target to generate assembly for a file
 gtest.cpp.s:
-	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/gtest.cpp.s
+	cd /home/amadey/Документы/Projects/Cache/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/gtest.cpp.s
 .PHONY : gtest.cpp.s
 
 # Help Target
@@ -211,7 +211,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... tests"
+	@echo "... testCache"
 	@echo "... gtest.o"
 	@echo "... gtest.i"
 	@echo "... gtest.s"

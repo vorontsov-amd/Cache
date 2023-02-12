@@ -1,10 +1,15 @@
-aux_source_directory(./src SRC_LIST)
+project(lfuCache)
 
-add_executable(lfu ${SRC_LIST})
+aux_source_directory(./src CPP_SOURCES)
 
-target_include_directories(lfu
+add_executable(${PROJECT_NAME} ${CPP_SOURCES})
+
+target_include_directories(${PROJECT_NAME}
                            PRIVATE ./include)
 
-install(TARGETS lfu
+add_definitions(-DCACHE_VERSION=2)
+
+install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        COMPONENT lfu)
+        COMPONENT ${PROJECT_NAME})
+        

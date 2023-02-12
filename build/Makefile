@@ -87,7 +87,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"lfu\" \"perfectCache\" \"tests\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"lfuCache\" \"perfectCache\" \"testCache\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -162,17 +162,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named lfu
+# Target rules for targets named lfuCache
 
 # Build rule for target.
-lfu: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lfu
-.PHONY : lfu
+lfuCache: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lfuCache
+.PHONY : lfuCache
 
 # fast build rule for target.
-lfu/fast:
-	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/build
-.PHONY : lfu/fast
+lfuCache/fast:
+	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/build
+.PHONY : lfuCache/fast
 
 #=============================================================================
 # Target rules for targets named perfectCache
@@ -188,17 +188,17 @@ perfectCache/fast:
 .PHONY : perfectCache/fast
 
 #=============================================================================
-# Target rules for targets named tests
+# Target rules for targets named testCache
 
 # Build rule for target.
-tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests
-.PHONY : tests
+testCache: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testCache
+.PHONY : testCache
 
 # fast build rule for target.
-tests/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/build
-.PHONY : tests/fast
+testCache/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/build
+.PHONY : testCache/fast
 
 # Help Target
 help:
@@ -212,9 +212,9 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... lfu"
+	@echo "... lfuCache"
 	@echo "... perfectCache"
-	@echo "... tests"
+	@echo "... testCache"
 .PHONY : help
 
 

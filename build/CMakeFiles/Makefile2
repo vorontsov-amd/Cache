@@ -84,7 +84,7 @@ clean: test/clean
 # Directory level rules for directory lfu_cache
 
 # Recursive "all" directory target.
-lfu_cache/all: lfu_cache/CMakeFiles/lfu.dir/all
+lfu_cache/all: lfu_cache/CMakeFiles/lfuCache.dir/all
 .PHONY : lfu_cache/all
 
 # Recursive "preinstall" directory target.
@@ -92,7 +92,7 @@ lfu_cache/preinstall:
 .PHONY : lfu_cache/preinstall
 
 # Recursive "clean" directory target.
-lfu_cache/clean: lfu_cache/CMakeFiles/lfu.dir/clean
+lfu_cache/clean: lfu_cache/CMakeFiles/lfuCache.dir/clean
 .PHONY : lfu_cache/clean
 
 #=============================================================================
@@ -114,7 +114,7 @@ perfect_cache/clean: perfect_cache/CMakeFiles/perfectCache.dir/clean
 # Directory level rules for directory test
 
 # Recursive "all" directory target.
-test/all: test/CMakeFiles/tests.dir/all
+test/all: test/CMakeFiles/testCache.dir/all
 .PHONY : test/all
 
 # Recursive "preinstall" directory target.
@@ -122,34 +122,34 @@ test/preinstall:
 .PHONY : test/preinstall
 
 # Recursive "clean" directory target.
-test/clean: test/CMakeFiles/tests.dir/clean
+test/clean: test/CMakeFiles/testCache.dir/clean
 .PHONY : test/clean
 
 #=============================================================================
-# Target rules for target lfu_cache/CMakeFiles/lfu.dir
+# Target rules for target lfu_cache/CMakeFiles/lfuCache.dir
 
 # All Build rule for target.
-lfu_cache/CMakeFiles/lfu.dir/all:
-	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/depend
-	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amadey/Документы/Projects/Cache/build/CMakeFiles --progress-num=1,2 "Built target lfu"
-.PHONY : lfu_cache/CMakeFiles/lfu.dir/all
+lfu_cache/CMakeFiles/lfuCache.dir/all:
+	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/depend
+	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amadey/Документы/Projects/Cache/build/CMakeFiles --progress-num=1,2 "Built target lfuCache"
+.PHONY : lfu_cache/CMakeFiles/lfuCache.dir/all
 
 # Build rule for subdir invocation for target.
-lfu_cache/CMakeFiles/lfu.dir/rule: cmake_check_build_system
+lfu_cache/CMakeFiles/lfuCache.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/amadey/Документы/Projects/Cache/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lfu_cache/CMakeFiles/lfu.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lfu_cache/CMakeFiles/lfuCache.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/amadey/Документы/Projects/Cache/build/CMakeFiles 0
-.PHONY : lfu_cache/CMakeFiles/lfu.dir/rule
+.PHONY : lfu_cache/CMakeFiles/lfuCache.dir/rule
 
 # Convenience name for target.
-lfu: lfu_cache/CMakeFiles/lfu.dir/rule
-.PHONY : lfu
+lfuCache: lfu_cache/CMakeFiles/lfuCache.dir/rule
+.PHONY : lfuCache
 
 # clean rule for target.
-lfu_cache/CMakeFiles/lfu.dir/clean:
-	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfu.dir/build.make lfu_cache/CMakeFiles/lfu.dir/clean
-.PHONY : lfu_cache/CMakeFiles/lfu.dir/clean
+lfu_cache/CMakeFiles/lfuCache.dir/clean:
+	$(MAKE) $(MAKESILENT) -f lfu_cache/CMakeFiles/lfuCache.dir/build.make lfu_cache/CMakeFiles/lfuCache.dir/clean
+.PHONY : lfu_cache/CMakeFiles/lfuCache.dir/clean
 
 #=============================================================================
 # Target rules for target perfect_cache/CMakeFiles/perfectCache.dir
@@ -178,30 +178,30 @@ perfect_cache/CMakeFiles/perfectCache.dir/clean:
 .PHONY : perfect_cache/CMakeFiles/perfectCache.dir/clean
 
 #=============================================================================
-# Target rules for target test/CMakeFiles/tests.dir
+# Target rules for target test/CMakeFiles/testCache.dir
 
 # All Build rule for target.
-test/CMakeFiles/tests.dir/all:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/depend
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amadey/Документы/Projects/Cache/build/CMakeFiles --progress-num=5,6 "Built target tests"
-.PHONY : test/CMakeFiles/tests.dir/all
+test/CMakeFiles/testCache.dir/all:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/depend
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amadey/Документы/Projects/Cache/build/CMakeFiles --progress-num=5,6 "Built target testCache"
+.PHONY : test/CMakeFiles/testCache.dir/all
 
 # Build rule for subdir invocation for target.
-test/CMakeFiles/tests.dir/rule: cmake_check_build_system
+test/CMakeFiles/testCache.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/amadey/Документы/Projects/Cache/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/tests.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/testCache.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/amadey/Документы/Projects/Cache/build/CMakeFiles 0
-.PHONY : test/CMakeFiles/tests.dir/rule
+.PHONY : test/CMakeFiles/testCache.dir/rule
 
 # Convenience name for target.
-tests: test/CMakeFiles/tests.dir/rule
-.PHONY : tests
+testCache: test/CMakeFiles/testCache.dir/rule
+.PHONY : testCache
 
 # clean rule for target.
-test/CMakeFiles/tests.dir/clean:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/clean
-.PHONY : test/CMakeFiles/tests.dir/clean
+test/CMakeFiles/testCache.dir/clean:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/testCache.dir/build.make test/CMakeFiles/testCache.dir/clean
+.PHONY : test/CMakeFiles/testCache.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

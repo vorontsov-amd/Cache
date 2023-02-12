@@ -6,16 +6,26 @@
 #include <algorithm>
 #include <functional>
 
+
+#ifndef CACHE_VERSION
+    #define CACHE_VERSION 2
+#endif
+
+
 namespace Cache {
 
+
+#if CACHE_VERSION == 1
+
+    //First implementation LFU cache ---------------------------------------------------------------------
     template <typename T, typename KeyT = int>
-    class Cache
+    class LFUCache final
     {
     private:
 
         using ListIt = typename std::list<KeyT>::iterator;
 
-        struct element
+        struct element final
         {
             T page;
             int counter;
@@ -29,18 +39,18 @@ namespace Cache {
 
 
     public:
-        Cache() : Cache(10) {}
-        Cache(size_t cap) : capacity(cap), min_counter(0) {}
-        ~Cache() = default;
+        LFUCache(size_t cap = 10) : capacity(cap), min_counter(0) {}
 
-        bool lookup_update(KeyT key, std::function<T(KeyT)> slow_get_page);
+        bool lookupUpdate(KeyT key, const std::function<T(KeyT)>& slow_get_page);
         
+    private:
         bool full() const { return cache.size() == capacity; } 
     };
 
+    //----------------------------------------------------------------------------------------------------
 
     template <typename T, typename KeyT>
-    bool Cache<T, KeyT>::lookup_update(KeyT key, std::function<T(KeyT)> slow_get_page)
+    bool LFUCache<T, KeyT>::lookupUpdate(KeyT key, const std::function<T(KeyT)>& slow_get_page)
     {
         if (cache.find(key) == cache.end())
         {
@@ -70,50 +80,92 @@ namespace Cache {
         if (counter == min_counter && keys[min_counter].empty()) min_counter++;
         return true;
     }
-        
 
+    //----------------------------------------------------------------------------------------------------
 
+#elif CACHE_VERSION == 2
+
+    //Second implementstion LFU cache. Work faster then the first version --------------------------------
     template <typename T, typename KeyT = int>
-    class IdealCache
+    class LFUCache final
     {
     private:
-        size_t capacity;
-        std::list<KeyT> keys;
-        std::unordered_map<KeyT, T> cache;
-        std::unordered_map<int, KeyT> keys_map;
-    public:
-        IdealCache(size_t cap, const std::list<KeyT>& lst) : capacity(cap), keys(lst) { }
+        struct element;
+        
+        using Parent_it = typename std::list<std::pair<int, std::list<element>>>::iterator;
+        using Iterator  = typename std::list<element>::iterator;
 
-        bool full() { return cache.size() == capacity; }
-        bool lookup_update(std::function<T(KeyT)> slow_get_page);
+        struct element final
+        {
+            T page;
+            Parent_it parent_it;
+            KeyT key;
+        };
+
+        size_t capacity;
+
+        std::unordered_map<KeyT, Iterator> htable;
+        std::list<std::pair<int, std::list<element>>> count_list;
+
+    public:
+        LFUCache(size_t capacity_ = 10) : capacity{capacity_} {}
+
+        bool lookupUpdate(KeyT key, const std::function<T(KeyT)>& slowGetPage);
+
+    private:
+        bool full() const { return htable.size() == capacity; }
     };
 
+    //----------------------------------------------------------------------------------------------------
 
     template <typename T, typename KeyT>
-    bool IdealCache<T, KeyT>::lookup_update(std::function<T(KeyT)> slow_get_page)
-    {
-        auto key = keys.front();
+    bool LFUCache<T, KeyT>::lookupUpdate(KeyT key, const std::function<T(KeyT)>& slowGetPage) {   
         
-        if (cache.find(key) == cache.end())
-        {
-            if (full())
-            {              
-                int min_frequency = INT32_MAX;
-                for (auto pair : cache)
-                {
-                    int frequency = std::count(keys.begin(), keys.end(), pair.first);
-                    keys_map[frequency] = pair.first;
-                    min_frequency = (frequency < min_frequency) ? frequency : min_frequency;
-                }
-                cache.erase(keys_map[min_frequency]);
-                keys_map.erase(min_frequency);
+        auto lfu_node = count_list.begin();
+        auto hit = htable.find(key);
+        
+        if(hit == htable.end()) {   
+            if(full()) {   
+                auto lfu_key = lfu_node->second.back().key;
+                htable.erase(lfu_key);
+                count_list.front().second.pop_back(); 
             }
-            cache[key] = slow_get_page(key);
 
-            keys.pop_front();
+            if (lfu_node->first != 1) {   
+                count_list.emplace_front(std::pair(1, std::list<element>{}));
+            }
+
+            element new_elem = { slowGetPage(key), count_list.begin(), key };
+            count_list.front().second.push_front(new_elem);
+            htable[key] = count_list.front().second.begin();
+
             return false;
         }
-        keys.pop_front();
+
+        auto elem_it = hit->second;
+        auto freq_it = elem_it->parent_it;
+        auto next_freq_it = std::next(elem_it->parent_it);
+        
+        if(next_freq_it == count_list.end() or (next_freq_it->first != (freq_it->first + 1))) {   
+            next_freq_it = count_list.insert(next_freq_it, std::pair(((freq_it->first) + 1), std::list<element>{}));
+        }
+
+        auto& list = freq_it->second;
+        auto& next_list = next_freq_it->second;
+        
+        next_list.splice(next_list.begin(), list, elem_it);
+        
+        elem_it->parent_it = next_freq_it;
+        if((freq_it->second).empty()) {   
+            count_list.erase(freq_it);
+        }
+
         return true;
     }
+    //----------------------------------------------------------------------------------------------------
+
+
+#endif
+
 };
+
