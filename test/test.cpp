@@ -1,104 +1,55 @@
-#include "../Cache/cache.h"
-#include <unistd.h>
-#include <vector>
+#include "cache.hpp"
+#include "perfectCache.hpp"
 #include <fstream>
-#include <algorithm>
-#include <chrono>
 
-struct page_t
-{
+struct page_t {
     int id;
-    page_t() : page_t(0) {}
-    page_t(int num) : id(num) {}
 };
 
-
-
-page_t slow_get_page(int key)
-{
-    //sleep(1);
-    //std::cout << "download page\n";
-    return page_t(key);
+page_t slow_get_page(int key) {
+    return page_t{key};
 }
 
-void CacheTest()
-{
-    std::vector test_1 = {1, 2, 3, 4, 1, 2, 5, 1, 2, 4, 3 , 4};
-    std::list<int> buf(test_1.size());
-    std::copy(test_1.begin(), test_1.end(), buf.begin());
+int LFU(std::ifstream& file) {
+   
+    int size = 0, number_of_pages = 0;
+    file >> size >> number_of_pages;
     
-    const size_t SIZE = 4;
-    Cache<page_t> cahce_1(SIZE);
-    IdealCache<page_t> idcache_1(SIZE, buf);
-
-    int hits = 0, idhits = 0;
-    for (auto x : test_1)
-    {
-        if(cahce_1.lookup_update(x, slow_get_page)) hits++;
-        if(idcache_1.lookup_update(slow_get_page)) idhits++;
-    }
-
-    const int EXPECTED_HITS = 6;
-    if (hits != EXPECTED_HITS)
-    {
-        std::cout << "Test LFU cache failed. Expected 8. Recived " << hits << '\n';
-    }
-    if (idhits != EXPECTED_HITS)
-    {
-        std::cout << "Test Ideal cache failed. Expected 8. Recived " << idhits << '\n';    
-    }
-    if (hits == EXPECTED_HITS && idhits == EXPECTED_HITS)
-    {
-        std::cout << "Test passed\n";
-    }
-}
-
-void CacheCompare()
-{   
-    using namespace std::chrono;
-    using fseconds = duration<float>;
-
-    int size = 0, number_of_page = 0;
-    std::cin >> size >> number_of_page;
+    Cache::Cache<page_t> cache(size);
 
     int hits = 0;
-    auto start = system_clock::now();
-
-    std::list<int> buf;
-    for (int i = 0; i < number_of_page; i ++)
+    for (int i = 0; i < number_of_pages; i++)
     {
         int page_number = 0;
-        std::cin >> page_number;
-        buf.push_back(page_number);
-    }
-
-    IdealCache<page_t> idcache(size, buf);
-    for (int i = 0; i < number_of_page; i++)
-    {
-        if (idcache.lookup_update(slow_get_page)) hits++;
-    }
-
-    auto end = system_clock::now() - start;
-    std::cout << "hils ideal cache " << hits << "\n"; 
-    std::cout << "runtime " << duration_cast<fseconds>(end).count() << "c\n";
-
-    Cache<page_t> cache(size);   
-    start =  system_clock::now();
-    hits = 0;
-    for (auto it = buf.begin(); it != buf.end(); ++it)
-    {
-        int page_number = *it;
+        file >> page_number;
         if (cache.lookup_update(page_number, slow_get_page)) hits++;
     }
 
-    end = system_clock::now() - start;
-    std::cout << "hits LFM " << hits << "\n"; 
-    std::cout << "runtime " << duration_cast<fseconds>(end).count() << "c\n";    
+    return hits;
 }
 
+int perfect(std::ifstream &file)
+{
+    int size = 0, number_of_pages = 0;
+    file >> size >> number_of_pages;
 
-int main()
-{    
-    CacheTest();
-    CacheCompare();
+    std::vector<int> keys;
+
+    int hits = 0;
+    
+    for (int i = 0; i < number_of_pages; i++)
+    {   
+        int page_number = 0;
+        file >> page_number;
+        keys.push_back(page_number);
+    }
+
+    Cache::PerfectCache<page_t> caches(size, keys);
+
+    for (int i = 0; i < number_of_pages; i++)
+    {   
+        if (caches.lookupUpdate(slow_get_page)) hits++;
+    }
+
+    return hits;
 }
