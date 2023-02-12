@@ -1,14 +1,47 @@
 # LFU Cache
-This is LFU algorithm cache working for O(1).
-It also implements an "ideal cache" and shows a comparison between an ideal cache and an LFC cache.
-##### Compilling
-To compile a program to compare caches with runtime counts, use make with the test argument.
-```cmd
-make test
+2 my implementations of the LFU cache with O(1) algorithmic complexity. There is also an implementation of an ideal cache that knows the future, to compare the speed of work and the number of cache hits.
+
+## Requirements 
+
+The following applications have to be installed:
+
+1. CMake 3.2 version (or higher)
+2. GTest
+3. g++
+
+
+## Compiling 
+
+To compile each of the cache you need to use сmake in the directory build:
+
+``` cmd
+$ mkdir build
+$ cd build
+$ сmake ..
+$ make all
 ```
-In order to compile test for LFC cache use make without arguments
-```cmd
-make
+
+## Run the program:
+
+You can find all binaries in dir build/bin
+
+
+LFU cache: 
+``` cmd
+$ ./bin/lfuCache
 ```
-##### Test results for 10,000 cells and a capacity of 10
-![](https://sun9-8.userapi.com/impg/sZNF93DEaC79jQEtla2ZOh6aTfYB7CCi-g3P6A/CjkCrzIROfw.jpg?size=655x120&quality=96&sign=06704336eb1e38f458f7668688d45537&type=album)
+Perfect cache:
+
+``` cmd
+$ ./bin/perfectCache
+```
+
+Test for cache:
+
+``` cmd
+$ ./bin/testCache
+```
+
+## Useful materials:
+* http://dhruvbird.com/lfu.pdf - **An O(1) algorithm for implementing the LFU
+cache eviction scheme**
