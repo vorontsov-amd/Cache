@@ -16,8 +16,10 @@ page_t slowGetPage(int key)
 
 int main()
 {
+#ifdef PRINT_TIME
     using namespace std::chrono;
     using fseconds = duration<float>;
+#endif
 
     size_t size = 0;
     int number_of_page = 0;
@@ -25,16 +27,23 @@ int main()
 
     Cache::LFUCache<page_t> cache{size};
 
-    int hits = 0;
+    
+#ifdef PRINT_TIME
     auto start = system_clock::now();
+#endif
 
+    int hits = 0;
     for (int i = 0; i < number_of_page; i ++) {
         int page_number = 0;
         std::cin >> page_number;
         if (cache.lookupUpdate(page_number, slowGetPage)) hits++;
     }
 
+#ifdef PRINT_TIME
     auto end = system_clock::now() - start;
+#endif
     std::cout << hits << '\n';
-    //std::cout << "runtime " << duration_cast<fseconds>(end).count() << "c\n";
+#ifdef PRINT_TIME
+    std::cout << "runtime " << duration_cast<fseconds>(end).count() << "c\n";
+#endif
 }
